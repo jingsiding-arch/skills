@@ -1,0 +1,3 @@
+interface:
+  display_name: "细节打磨"
+  short_description: "在发布前修正对齐、间距、一致性和界面细节问题"

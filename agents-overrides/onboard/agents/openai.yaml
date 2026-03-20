@@ -1,0 +1,3 @@
+interface:
+  display_name: "新手引导"
+  short_description: "设计或优化 onboarding、空状态和首次使用体验"

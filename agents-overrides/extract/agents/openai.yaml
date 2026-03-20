@@ -1,0 +1,3 @@
+interface:
+  display_name: "组件提取"
+  short_description: "提取可复用组件、设计令牌和模式，沉淀设计系统"

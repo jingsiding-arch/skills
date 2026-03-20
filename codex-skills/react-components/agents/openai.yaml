@@ -1,0 +1,4 @@
+interface:
+  display_name: "React 组件生成器"
+  short_description: "把 Stitch 设计转换成模块化的 Vite + React 组件"
+  default_prompt: "使用 $react:components 将 Stitch 设计生成成可复用的 Vite + React 组件，并校验输出。"

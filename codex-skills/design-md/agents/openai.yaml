@@ -1,0 +1,4 @@
+interface:
+  display_name: "设计系统说明生成器"
+  short_description: "分析 Stitch 项目并生成语义化的 DESIGN.md 设计系统文档"
+  default_prompt: "使用 $design-md 分析 Stitch 项目，并产出一份可复用的 DESIGN.md 设计系统说明。"

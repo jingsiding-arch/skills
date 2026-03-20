@@ -1,0 +1,3 @@
+interface:
+  display_name: "设计准则设置"
+  short_description: "一次性采集项目设计上下文，建立长期可复用的设计规则"

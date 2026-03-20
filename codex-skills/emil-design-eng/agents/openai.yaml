@@ -1,0 +1,4 @@
+interface:
+  display_name: "Emil 设计工程"
+  short_description: "用 Emil Kowalski 的方法打磨 UI 细节、组件质感与动效决策"
+  default_prompt: "使用 $emil-design-eng 按 Emil Kowalski 的设计工程思路优化界面质感、组件细节和动画。"

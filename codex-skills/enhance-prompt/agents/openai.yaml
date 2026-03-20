@@ -1,0 +1,4 @@
+interface:
+  display_name: "提示词增强器"
+  short_description: "把模糊的 UI 想法整理成更适合 Stitch 的高质量提示词"
+  default_prompt: "使用 $enhance-prompt 把你的界面想法增强成结构清晰、可直接用于 Stitch 的高质量提示词。"

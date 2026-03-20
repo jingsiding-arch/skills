@@ -1,0 +1,4 @@
+interface:
+  display_name: "shadcn/ui 助手"
+  short_description: "帮助你选型、安装、定制并正确使用 shadcn/ui 组件"
+  default_prompt: "使用 $shadcn-ui 帮你完成 shadcn/ui 组件选型、安装、定制和接入。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "模块 PRD 生成器"
+  short_description: "帮助你把模糊的业务模块想法快速整理成完整的模块级 PRD"
+  default_prompt: "使用 $module-prd-writer 收集最少必要信息，并产出一份可评审的模块级 PRD，包含范围、流程、规则和验收标准。"

@@ -1,0 +1,3 @@
+interface:
+  display_name: "降噪收敛"
+  short_description: "降低过强的视觉攻击性，让设计更克制但仍有品质"

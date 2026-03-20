@@ -1,0 +1,3 @@
+interface:
+  display_name: "Camoufox 自动化"
+  short_description: "用于带反爬、验证码或指纹检测场景的浏览器自动化"

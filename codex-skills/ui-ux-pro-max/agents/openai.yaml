@@ -1,0 +1,4 @@
+interface:
+  display_name: "UI/UX 专家库"
+  short_description: "提供可检索的 UI/UX 设计知识和分析支持"
+  default_prompt: "使用 $ui-ux-pro-max 查询设计知识库，并给出更专业的 UI/UX 方案建议。"

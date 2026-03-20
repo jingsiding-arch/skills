@@ -1,0 +1,3 @@
+interface:
+  display_name: "稳健加固"
+  short_description: "补齐异常处理、溢出、国际化和边界场景，提升鲁棒性"

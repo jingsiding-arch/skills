@@ -1,0 +1,4 @@
+interface:
+  display_name: "演示视频生成器"
+  short_description: "用 Remotion 把 Stitch 项目生成带转场和字幕的讲解视频"
+  default_prompt: "使用 $remotion 基于 Stitch 项目生成带平滑转场、缩放和文字说明的演示视频。"
