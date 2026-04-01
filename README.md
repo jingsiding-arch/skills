@@ -65,6 +65,8 @@ python3 scripts/scan-skills-risk.py ~/.codex/skills/react-components
 bash scripts/install.sh
 ```
 
+详细更新记录见 [CHANGELOG.md](./CHANGELOG.md)。
+
 ## 说明
 
 - 这个仓库不会覆盖内置技能的主体逻辑，只会补充 `agents/openai.yaml` 这类中文显示配置。
