@@ -24,7 +24,38 @@ bash scripts/install.sh
 - `~/.codex/skills`
 - `~/.agents/skills`
 
-安装完成后，重启 Codex 以加载新的技能与显示名称。
+安装完成后，脚本会自动对刚安装的自定义 skills 做一次**风险扫描**，然后再提示你重启 Codex。
+
+默认行为：
+
+- **会扫描**
+- **不会因为发现风险而中断安装**
+
+如果你希望发现高风险时直接让安装命令失败，可以这样执行：
+
+```bash
+SKILL_RISK_FAIL_ON=high bash scripts/install.sh
+```
+
+可选阈值：
+
+- `none`：只报告，不阻断（默认）
+- `medium`
+- `high`
+- `critical`
+
+你也可以单独运行扫描脚本：
+
+```bash
+python3 scripts/scan-skills-risk.py codex-skills
+python3 scripts/scan-skills-risk.py ~/.codex/skills/react-components
+```
+
+说明：
+
+- 这是**静态启发式扫描**，不是绝对安全证明
+- 它主要检查：联网下载、安装依赖、浏览器自动化、提权、写文件、动态执行等模式
+- 建议对 `HIGH` / `CRITICAL` 结果做人工复核
 
 ## 更新方式
 
