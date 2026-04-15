@@ -2,6 +2,18 @@
 
 ## 2026-04-15
 
+### Add bdoc optimization skill to shared pack
+
+本次更新把 `bdoc-optimization-testcase-writer` 同步进共享技能仓库，方便团队统一安装和分发。
+
+更新内容：
+
+- 新增共享技能目录 `codex-skills/bdoc-optimization-testcase-writer`
+- 同步了该技能所需的 `agents/`、`assets/`、`references/`、`evals/` 和 `scripts/` 资源
+- `README.md` 中的自定义技能数量更新为 10 个
+
+## 2026-04-15
+
 ### Add companion skill suggestions during install
 
 本次更新为技能安装流程补充了“依赖/搭配技能提示”能力，避免用户只安装主 skill 时漏掉关键的上游或协作 skill。
