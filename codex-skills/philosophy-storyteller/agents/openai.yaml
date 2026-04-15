@@ -1,0 +1,4 @@
+interface:
+  display_name: "哲理对话小故事"
+  short_description: "把小道理改写成克制有余味的对话故事"
+  default_prompt: "使用 $philosophy-storyteller，把这句小道理写成一个中文对话式小故事。"

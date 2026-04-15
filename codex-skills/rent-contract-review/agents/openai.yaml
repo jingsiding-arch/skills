@@ -1,0 +1,4 @@
+interface:
+  display_name: "租房合同审查"
+  short_description: "按租客视角审查租房合同并输出风险与改法"
+  default_prompt: "Use $rent-contract-review to review this rental contract from the tenant perspective and propose safer clauses."

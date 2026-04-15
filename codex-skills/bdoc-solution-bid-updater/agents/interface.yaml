@@ -1,0 +1,59 @@
+name: bdoc-solution-bid-updater
+display_name: B端功能方案/投标参数联动更新
+version: 0.1.0
+entry: SKILL.md
+summary: >-
+  基于旧版功能方案、旧版功能投标参数和最新变更依据，联动产出新版功能方案与新版投标参数，
+  在原文档基础上直接改写补充，保持原文结构、术语、编号、句式范式和投标口径一致，并输出完整新版双文档、变更映射与待确认项。
+metadata:
+  owner: homg
+  category: b-side-documents
+  mode: production-light
+  default_language: zh-CN
+  posture: conservative
+activation:
+  when:
+    - 用户要同时更新功能方案和投标参数
+    - 用户强调沿用旧模板、旧编号、旧表格口径
+    - 用户要求把新增功能同步体现在方案与投标参数中
+    - 用户要求输出新版双文档、变更摘要、待确认项
+    - 用户要求在原文基础上改写补充，并生成两个新的完整文档
+  avoid_when:
+    - 从零写新模块 PRD
+    - 仅做操作手册更新
+    - 仅做技术设计或接口设计
+    - 仅做文风润色或摘要
+inputs:
+  required:
+    - old_solution_doc
+    - old_bid_parameter_doc
+    - latest_change_source
+  optional:
+    - target_version
+    - target_customer_or_industry
+    - strict_bid_stance
+    - allow_low_risk_fill
+    - highlight_mode
+outputs:
+  default:
+    - full_updated_solution_doc
+    - full_updated_bid_parameter_doc
+    - change_mapping_table
+    - change_summary
+    - pending_questions_and_ai_assumptions
+rules:
+  must:
+    - keep original structure and numbering when possible
+    - inherit original wording patterns and section style
+    - preserve bid-response tone and avoid over-claiming
+    - run cross-document consistency checks before finalizing
+    - when source of truth is a backend site, inspect key non-destructive buttons and dialogs instead of relying on menu names alone
+  never:
+    - fabricate supported capabilities or certifications
+    - turn configurable or custom work into native capability claims
+    - silently drop impacted parameter rows
+resources:
+  references:
+    - references/update-matrix-template.md
+    - references/consistency-checklist.md
+    - references/style-inheritance-rules.md

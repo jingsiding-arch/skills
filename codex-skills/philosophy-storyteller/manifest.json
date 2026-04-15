@@ -1,0 +1,17 @@
+{
+  "name": "philosophy-storyteller",
+  "version": "0.1.0",
+  "owner": "homg",
+  "updated_at": "2026-04-13",
+  "status": "active",
+  "maturity_tier": "scaffold",
+  "lifecycle_stage": "scaffold",
+  "context_budget_tier": "light",
+  "review_cadence": "on-demand",
+  "target_platforms": [
+    "openai",
+    "claude",
+    "generic",
+    "agent-skills-compatible"
+  ]
+}

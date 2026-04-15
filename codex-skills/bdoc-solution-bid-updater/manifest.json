@@ -1,0 +1,17 @@
+{
+  "name": "bdoc-solution-bid-updater",
+  "version": "0.1.0",
+  "owner": "homg",
+  "updated_at": "2026-04-04",
+  "status": "active",
+  "maturity_tier": "production-light",
+  "lifecycle_stage": "production",
+  "context_budget_tier": "production",
+  "review_cadence": "monthly",
+  "target_platforms": [
+    "openai",
+    "claude",
+    "generic",
+    "agent-skills-compatible"
+  ]
+}

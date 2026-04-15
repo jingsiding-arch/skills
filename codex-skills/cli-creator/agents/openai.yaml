@@ -1,0 +1,4 @@
+interface:
+  display_name: "CLI Creator"
+  short_description: "为 Codex 创建可复用的 CLI 工具"
+  default_prompt: "Create a composable CLI from this source material, install it on PATH, test it from outside the source folder, and create a companion skill that teaches Codex when to use it."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "MD 飞书排版"
+  short_description: "把 Markdown 正文零改写地创建为排版清晰的飞书云文档"
+

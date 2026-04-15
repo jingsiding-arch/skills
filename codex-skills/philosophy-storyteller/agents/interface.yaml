@@ -1,0 +1,56 @@
+name: philosophy-storyteller
+display_name: 哲理对话小故事
+version: 0.1.0
+entry: SKILL.md
+summary: >-
+  将一句小道理、人生哲理、情绪洞察或关系观察，改写成中文对话式小故事：
+  通过日常场景、连续追问、隐喻递进和克制收束，让抽象观点变得具体、有共鸣、有余味。
+metadata:
+  owner: homg
+  category: creative-writing
+  mode: scaffold
+  default_language: zh-CN
+  posture: generative
+activation:
+  when:
+    - 用户输入一句小道理、哲理、感悟、关系观察，希望改写成故事
+    - 用户要求把观点写成小故事、对话故事、深夜聊天感故事
+    - 用户提到夏令营效应、烟花和灯、火柴和太阳这类隐喻递进故事
+    - 用户希望输出克制、有余味、不说教的中文哲理短篇
+  avoid_when:
+    - 用户只要概念定义或事实解释
+    - 用户要写完整小说、剧本分镜、营销文案或儿童寓言
+    - 用户要求模仿特定在世作者
+inputs:
+  required:
+    - core_truth
+  optional:
+    - scene_hint
+    - tone
+    - length
+    - metaphor_seed
+outputs:
+  default:
+    - dialogue_story
+  optional:
+    - core_conflict
+    - metaphor
+    - emotional_landing
+rules:
+  must:
+    - extract the tension as "people expect A, but reality behaves like B"
+    - use a concrete ordinary scene before explaining the philosophy
+    - advance through short question-and-answer dialogue
+    - preserve emotional resistance before offering acceptance
+    - use at least one central metaphor and let it evolve
+    - end quietly without moralizing
+  never:
+    - output an essay instead of a story when story is requested
+    - add "这个故事告诉我们" style moral summaries
+    - fake academic concepts as real
+    - over-heal the protagonist or erase grief too quickly
+resources:
+  references:
+    - references/story-pattern.md
+    - references/quality-checklist.md
+    - references/example-transformations.md

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Autoresearch"
+  short_description: "反复跑测、二元评估并迭代优化任意 Codex skill"
+  default_prompt: "Use $autoresearch to first collect the target skill, test inputs, binary evals, run interval, and budget cap, then benchmark and improve the skill without touching the original."
