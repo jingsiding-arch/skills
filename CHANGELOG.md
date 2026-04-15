@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-04-16
+
+### Refresh bdoc optimization testcase skill
+
+本次更新再次同步了 `bdoc-optimization-testcase-writer`，使共享仓库版本与本地 `~/.codex/skills` 保持一致。
+
+更新内容：
+
+- 更新 `SKILL.md`
+- 更新 `scripts/update_lark_optimization_doc.py`
+- 新增浅色文档模板 `assets/optimization-doc-template-light.md`
+- 新增评测说明 `evals/README.md`
+- 新增参考资料 `references/routing-decision-table.md`
+- 新增校验脚本 `scripts/lint_skill_consistency.py`
+- 新增输出比对脚本 `scripts/eval_output_against_sample.py`
+
 ## 2026-04-15
 
 ### Add yao-meta-skill to shared pack with explicit risk note

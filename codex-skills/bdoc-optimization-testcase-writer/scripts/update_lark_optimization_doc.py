@@ -30,6 +30,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--as', dest='identity', default='user', choices=('user', 'bot'))
     parser.add_argument('--chunk-chars', type=int, default=DEFAULT_CHUNK_CHARS)
     parser.add_argument('--dry-run', action='store_true')
+    parser.add_argument('--skip-preflight', action='store_true', help='Skip lark-cli doctor/auth checks')
     parser.add_argument('--prepend-separator', action='store_true', help='Prepend a markdown separator before append content')
     args = parser.parse_args()
 
@@ -149,6 +150,30 @@ def run(cmd: list[str]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(cmd, capture_output=True, text=True)
 
 
+def summarize_result(result: subprocess.CompletedProcess[str]) -> dict:
+    return {
+        'command': result.args,
+        'returncode': result.returncode,
+        'stdout': result.stdout[-2000:],
+        'stderr': result.stderr[-2000:],
+    }
+
+
+def run_preflight(identity: str) -> tuple[bool, list[dict]]:
+    checks = []
+    commands = [['lark-cli', 'doctor']]
+    if identity == 'user':
+        commands.append(['lark-cli', 'auth', 'status'])
+
+    for cmd in commands:
+        result = run(cmd)
+        item = summarize_result(result)
+        checks.append(item)
+        if result.returncode != 0:
+            return False, checks
+    return True, checks
+
+
 def build_create_command(args: argparse.Namespace, source: Path) -> list[str]:
     cmd = [
         'python3', str(CREATE_SCRIPT),
@@ -248,6 +273,18 @@ def main() -> int:
         print(json.dumps({'ok': False, 'error': str(exc)}, ensure_ascii=False, indent=2))
         return 1
 
+    preflight_checks = []
+    if not args.skip_preflight:
+        ok, preflight_checks = run_preflight(args.identity)
+        if not ok:
+            print(json.dumps({
+                'ok': False,
+                'error': 'lark preflight failed',
+                'hint': 'Run lark-cli doctor and lark-cli auth status, or pass --skip-preflight only when intentionally working offline.',
+                'preflight': preflight_checks,
+            }, ensure_ascii=False, indent=2))
+            return 1
+
     effective_mode = args.mode
     if effective_mode == 'auto':
         effective_mode = 'append' if args.doc else 'create'
@@ -269,6 +306,7 @@ def main() -> int:
             'source': str(source_path),
             'title': args.title or source_path.stem,
             'identity': args.identity,
+            'preflight': preflight_checks,
             'doc_id': doc_id,
             'doc_url': doc_url,
             'payload': payload,
@@ -291,6 +329,7 @@ def main() -> int:
                 'source': str(source_path),
                 'doc': args.doc,
                 'identity': args.identity,
+                'preflight': preflight_checks,
                 'chunk_count': len(chunks),
                 'first_chunk_preview': chunks[0][:800] if chunks else '',
             }, ensure_ascii=False, indent=2))
@@ -318,6 +357,7 @@ def main() -> int:
             'source': str(source_path),
             'doc': args.doc,
             'identity': args.identity,
+            'preflight': preflight_checks,
             'chunk_count': len(chunks),
             'updated_chunks': successes,
             'prepended_separator': args.prepend_separator,
@@ -340,6 +380,7 @@ def main() -> int:
             'source': str(source_path),
             'doc': args.doc,
             'identity': args.identity,
+            'preflight': preflight_checks,
             'replaced_existing_testcase_section': replaced_existing_section,
             'final_length': len(merged_markdown),
             'preview': merged_markdown[-1200:],
@@ -365,6 +406,7 @@ def main() -> int:
         'source': str(source_path),
         'doc': args.doc,
         'identity': args.identity,
+        'preflight': preflight_checks,
         'replaced_existing_testcase_section': replaced_existing_section,
         'final_length': len(merged_markdown),
     }, ensure_ascii=False, indent=2))
