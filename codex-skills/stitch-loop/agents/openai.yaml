@@ -1,4 +1,0 @@
-interface:
-  display_name: "Stitch 循环构建器"
-  short_description: "通过迭代循环方式持续用 Stitch 构建和完善网站"
-  default_prompt: "使用 $stitch-loop 以循环迭代方式持续构建和完善 Stitch 网站。"

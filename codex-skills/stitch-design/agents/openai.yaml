@@ -1,4 +1,0 @@
-interface:
-  display_name: "Stitch 设计工作台"
-  short_description: "Stitch 设计统一入口，覆盖提示词增强、设计系统提炼和页面生成"
-  default_prompt: "使用 $stitch-design 处理 Stitch 相关设计工作，包括提示词增强、设计系统提炼和高保真页面生成。"
