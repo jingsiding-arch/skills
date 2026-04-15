@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-04-15
+
+### Add companion skill suggestions during install
+
+本次更新为技能安装流程补充了“依赖/搭配技能提示”能力，避免用户只安装主 skill 时漏掉关键的上游或协作 skill。
+
+更新内容：
+
+- `scripts/install.sh` 支持只安装指定 skill，例如 `bash scripts/install.sh enhance-prompt`
+- 新增脚本 `scripts/show-skill-recommendations.py`
+- 安装完成后会读取 `SKILL.md` frontmatter 中声明的 `recommended-skills`
+- 如果某个 skill 建议搭配其他 skill，会在安装时提示“建议同时安装什么，以及这些 skill 分别用于做什么”
+- `enhance-prompt` 和 `prd-to-hifi-prototype` 补充了 companion skill 声明示例
+- `README.md` 补充了按技能安装与 companion skill 提示说明
+
 ## 2026-04-01
 
 ### Add post-install skill risk scanning

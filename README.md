@@ -8,7 +8,7 @@
 
 ## 包含内容
 
-- 11 个自定义技能目录
+- 9 个自定义技能目录
 - 22 个内置技能的中文显示名覆盖配置
 
 ## 安装
@@ -19,12 +19,19 @@
 bash scripts/install.sh
 ```
 
+如果只想安装部分技能，也可以在命令后面直接带技能目录名：
+
+```bash
+bash scripts/install.sh enhance-prompt
+bash scripts/install.sh enhance-prompt design-md
+```
+
 默认会把文件安装到：
 
 - `~/.codex/skills`
 - `~/.agents/skills`
 
-安装完成后，脚本会自动对刚安装的自定义 skills 做一次**风险扫描**，然后再提示你重启 Codex。
+安装完成后，脚本会自动对刚安装的自定义 skills 做一次**风险扫描**，并根据各个 `SKILL.md` 里声明的 `recommended-skills` 输出“建议一起安装的 companion skills”及用途说明，然后再提示你重启 Codex。
 
 默认行为：
 
@@ -71,4 +78,5 @@ bash scripts/install.sh
 
 - 这个仓库不会覆盖内置技能的主体逻辑，只会补充 `agents/openai.yaml` 这类中文显示配置。
 - 自定义技能会同步到 `~/.codex/skills/` 下对应目录。
+- 如果某个 skill 在 frontmatter 里声明了 `recommended-skills`，安装时会提示建议同时安装哪些 companion skill，以及它们分别用于什么场景。
 - 如果你们团队后续想统一维护技能，建议直接在这个仓库里修改后再分发。

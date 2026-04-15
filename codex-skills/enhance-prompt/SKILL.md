@@ -1,6 +1,9 @@
 ---
 name: enhance-prompt
 description: 把模糊的 UI 想法增强成更适合 Stitch 的高质量提示词，补充 UI/UX 关键词、设计系统上下文与结构化约束。Transforms vague UI ideas into polished, Stitch-optimized prompts. Enhances specificity, adds UI/UX keywords, injects design system context, and structures output for better generation results.
+recommended-skills:
+  - name: design-md
+    purpose: 用于先生成项目的 DESIGN.md 设计系统文档，把统一的颜色、排版和组件风格注入到 Stitch 提示词里。
 allowed-tools:
   - "Read"
   - "Write"

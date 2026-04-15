@@ -1,6 +1,9 @@
 ---
 name: prd-to-hifi-prototype
 description: 将模块级 PRD、页面清单、字段表、流程说明、截图或 Figma 线索，转成可运行、可点击的 React + Vite + Ant Design 高保真原型，包含导航、关键流程、表单/表格、状态流转、Mock 数据与演示场景。Use when the user asks to 根据 PRD 做原型、搭可点击 demo、补齐动态页面、把字段/流程落成交互页面，或在现有 React/Vite 项目中接入原型页面。
+recommended-skills:
+  - name: module-prd-writer
+    purpose: 用于先把模糊的模块需求整理成结构化 PRD，补齐角色、流程、规则和验收口径，再进入高保真原型实现。
 ---
 
 # Role（角色）
