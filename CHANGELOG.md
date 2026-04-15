@@ -2,6 +2,19 @@
 
 ## 2026-04-15
 
+### Add yao-meta-skill to shared pack with explicit risk note
+
+本次更新把 `yao-meta-skill` 也同步进共享仓库，补齐与本地 `~/.codex/skills` 的最后一个差异项。
+
+更新内容：
+
+- 新增共享技能目录 `codex-skills/yao-meta-skill`
+- 当前共享仓库中的自定义技能总数更新为 38 个
+- 同步时排除了本地 `.git` 元数据与缓存目录
+- 风险扫描结果中，该技能仍保留一个 `CRITICAL` 项：`Makefile` 中存在 `rm -rf dist tests/tmp tests/tmp_snapshot` 的清理命令，后续安装和使用时应人工知悉并审查
+
+## 2026-04-15
+
 ### Sync remaining local custom skills into shared pack
 
 本次更新把本地 `~/.codex/skills` 里尚未进入共享仓库的剩余自定义技能统一同步到 `codex-skills/`，让团队安装源和个人常用技能集保持一致。
@@ -9,10 +22,10 @@
 更新内容：
 
 - 新增 27 个共享技能目录，包括文档处理、网页访问、技能工程、研究分析、内容创作与 GitHub 工作流相关能力
-- 当前共享仓库中的自定义技能总数更新为 37 个
+- 当时共享仓库中的自定义技能总数更新为 37 个
 - 同步时排除了 `.DS_Store` 和 `__pycache__` 等本地缓存文件
 - 清理了误同步进去的嵌套 `.git` 目录和 `node_modules`
-- `yao-meta-skill` 暂未纳入共享仓库，因为风险扫描命中了真实的 `CRITICAL` 级 destructive command，后续可单独审查后再决定是否加入
+- `yao-meta-skill` 在这一批里暂未纳入共享仓库，后续已单独同步并记录风险说明
 - 后续安装 `bash scripts/install.sh` 时会一起安装这些新增技能
 
 ## 2026-04-15
