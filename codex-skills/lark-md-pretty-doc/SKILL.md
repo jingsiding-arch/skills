@@ -1,6 +1,6 @@
 ---
 name: lark-md-pretty-doc
-version: 1.1.0
+version: 1.1.1
 description: "将本地 Markdown 文件在正文零改写的前提下，创建为排版清晰的飞书云文档。适用于 PRD、方案、技术文档、会议纪要等从 .md 生成飞书文档，且要求保留原始标题、段落、表格、代码块与顺序不变，并默认以 editorial-warm 主题轻美化方式分块写入飞书。"
 metadata:
   requires:
@@ -29,6 +29,14 @@ metadata:
 - 如果源 Markdown 已经手写了 `<callout ...>`，脚本会自动把最终 `beautify_mode` 从 `light` 降级为 `off`，避免生成嵌套 callout
 - 默认主题是 `editorial-warm`
 - `--preface-mode` 与 `--navigation-mode` 仅保留兼容旧调用，不再实际生成顶部导读块和阅读导航
+
+## 快速路径
+
+- 普通创建：`--input <abs.md> --wiki-space my_library`，默认先预检再 `--dry-run`
+- 显式删章：额外传 `--omit-section-title "章节名"`
+- 显式语义着色：额外传 `--inline-color-mode semantic-conservative`
+- 冒号前标签加粗蓝色：额外传 `--label-prefix-style blue-bold`
+- 不要流程图：额外传 `--flowchart-mode off`
 
 ## 不可破坏的约束
 
@@ -201,91 +209,18 @@ python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lar
   --theme editorial-warm
 ```
 
-这会使用默认的 `editorial-warm` 轻美化模式：
+常用附加参数速查：
 
-- 少量分割线
-- 暖色主题高亮块
-- 适合并列信息时使用轻量分栏
-- 不加顶部导读、阅读导航、来源代码块
-- 如有需要，可额外开启结构导图或章节提示
-
-如果用户指定标题或目标位置：
-
-```bash
-python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lark_doc_from_md.py \
-  --input "/absolute/path/to/file.md" \
-  --theme editorial-warm \
-  --title "课堂考勤模块PRD_v1.9_研发交付版_20260401" \
-  --folder-token "fldcnxxxx"
-```
-
-如果只想预演命令，不真正创建：
-
-```bash
-python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lark_doc_from_md.py \
-  --input "/absolute/path/to/file.md" \
-  --wiki-space my_library \
-  --theme editorial-warm \
-  --dry-run
-```
-
-如果用户明确要求删除工程附表后再创建：
-
-```bash
-python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lark_doc_from_md.py \
-  --input "/absolute/path/to/file.md" \
-  --wiki-space my_library \
-  --theme editorial-warm \
-  --omit-section-title "工程附表"
-```
-
-如果用户明确要求按语义给正文关键词上色：
-
-```bash
-python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lark_doc_from_md.py \
-  --input "/absolute/path/to/file.md" \
-  --wiki-space my_library \
-  --theme editorial-warm \
-  --inline-color-mode semantic
-```
-
-如果用户想要更克制、适合 PRD 的颜色版本：
-
-```bash
-python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lark_doc_from_md.py \
-  --input "/absolute/path/to/file.md" \
-  --wiki-space my_library \
-  --theme editorial-warm \
-  --inline-color-mode semantic-conservative
-```
-
-如果用户希望脚本自动推荐颜色档位：
-
-```bash
-python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lark_doc_from_md.py \
-  --input "/absolute/path/to/file.md" \
-  --wiki-space my_library \
-  --theme editorial-warm \
-  --inline-color-mode auto
-```
-
-如果用户希望“冒号前标题蓝色加粗”，推荐与 PRD 一起使用：
-
-```bash
-python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lark_doc_from_md.py \
-  --input "/absolute/path/to/file.md" \
-  --wiki-space my_library \
-  --label-prefix-style blue-bold
-```
-
-如果文档里涉及流程，推荐保持默认自动流程图：
-
-```bash
-python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lark_doc_from_md.py \
-  --input "/absolute/path/to/file.md" \
-  --wiki-space my_library \
-  --flowchart-mode auto
-```
+| 需求 | 参数 |
+| --- | --- |
+| 自定义标题 | `--title "文档标题"` |
+| 指定目标位置 | `--folder-token ...` / `--wiki-node ...` / `--wiki-space ...` |
+| 只预演不创建 | `--dry-run` |
+| 删除指定整章 | `--omit-section-title "工程附表"` |
+| 正文语义着色 | `--inline-color-mode semantic-conservative` / `semantic` / `auto` |
+| 冒号前标签加粗蓝色 | `--label-prefix-style blue-bold` |
+| 禁用自动流程图 | `--flowchart-mode off` |
+| 开启结构导图或章节提示 | `--mindmap-mode auto` / `--section-hint-mode auto` |
 
 ## 脚本能力
 
@@ -311,46 +246,40 @@ python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lar
 
 按这个顺序执行：
 
-1. 确认 Markdown 文件绝对路径存在
-2. 先执行飞书预检：`lark-cli doctor`；若使用 `--as user`，再执行 `lark-cli auth status`
-3. 如果预检失败，先回到 `lark-shared` 完成配置或认证，不要继续假装创建成功
-4. 确认创建目标：`--folder-token` / `--wiki-node` / `--wiki-space`；若用户未指定，默认使用 `--wiki-space my_library`
-5. 如果用户明确要求排除章节，传 `--omit-section-title`
-6. 默认先执行一次 `--dry-run`，确认预检、目标位置、分块数和最终 `beautify_mode`
-7. 默认请求 `--beautify-mode light --theme editorial-warm`，但若源文档已含 `<callout ...>`，脚本会自动降级为 `off`
-8. 默认不要传 `--preface-mode auto`、`--navigation-mode auto`
-9. 如果旧流程里传了这两个参数，也只做兼容，不再生成对应内容
-10. 只有用户明确要求增强排版时，才开启 `--mindmap-mode auto` 或 `--section-hint-mode auto`
-11. 如果用户希望自动推荐颜色档位，传 `--inline-color-mode auto`
-12. 如果用户明确要求语义着色，优先传 `--inline-color-mode semantic-conservative`
-13. 如果用户明确想要更强的提示感，再传 `--inline-color-mode semantic`
-14. 默认使用 `--as user`
-15. 优先执行脚本，不手写大段 `lark-cli docs +create --markdown "..."`
-16. 当 `--dry-run` 和飞书预检都通过后，继续执行真实创建，不要停在预演结果
-17. 创建完成后，把 `doc_id`、`doc_url`、最终目标位置和最终采用的着色/排版档位返回给用户
+1. 确认 Markdown 文件绝对路径存在。
+2. 先执行飞书预检：`lark-cli doctor`；若使用 `--as user`，再执行 `lark-cli auth status`。
+3. 预检失败时先回到 `lark-shared` 完成配置或认证，不要继续假装创建成功。
+4. 确认目标位置；若用户未指定，默认使用 `--wiki-space my_library`。
+5. 默认先执行一次 `--dry-run`，确认预检、目标位置、分块数和最终 `beautify_mode`。
+6. 默认使用 `--as user --theme editorial-warm`；若源文档已含 `<callout ...>`，脚本会自动把 `beautify_mode` 降级为 `off`。
+7. `--preface-mode` 与 `--navigation-mode` 只保留兼容，不要主动传。
+8. 只有用户明确要求时，才开启 `--omit-section-title`、`--inline-color-mode`、`--label-prefix-style`、`--mindmap-mode`、`--section-hint-mode`。
+9. 优先执行脚本，不手写大段 `lark-cli docs +create --markdown "..."`。
+10. `--dry-run` 和飞书预检都通过后，继续执行真实创建，不要停在预演结果。
+11. 创建完成后，把 `doc_id`、`doc_url`、目标位置和最终采用的排版/着色档位返回给用户。
 
-## 额外扩展要求
+## 脚本默认保障
 
-除了用户明确提出的 4 条，这个 skill 还默认补上这些实践：
+- 长文档默认分块创建，避免一次性大 payload 失败。
+- 分块时不在 fenced code block 内切开；超长代码块允许单块临时超过预算。
+- 中途 append 失败时，至少保留已创建文档和已成功写入的块。
+- 目标位置支持个人知识库、知识库节点、云空间文件夹；未显式指定时默认回落到 `my_library`。
+- 默认输出 JSON 摘要，方便审计与复盘。
+- 默认只创建新文档并追加，不对现有文档执行 overwrite。
+- 源 Markdown 已含 `<callout ...>` 时，自动关闭轻美化，避免飞书出现嵌套 callout 风险。
+- `auto` 模式会输出最终采用的档位与判断理由。
 
-- **长文档安全性**：默认分块创建，避免一次性大 payload 失败
-- **代码块边界保护**：分块时不在 fenced code block 内切开
-- **失败可恢复**：如果中途 append 失败，至少保留已创建文档和已成功写入的块
-- **目标可配置**：支持个人知识库、知识库节点、云空间文件夹
-- **目标有默认值**：未显式指定时，自动回落到 `my_library`
-- **默认可审计**：脚本最终输出 JSON 摘要，方便复盘
-- **默认不覆盖**：只创建新文档并追加，不对现有文档执行 overwrite
-- **保留代码内容**：源文档已有代码块时原样保留
-- **默认轻美化**：默认使用 `editorial-warm` 主题做克制的分割线、少量高亮块和轻量分栏
-- **callout 防呆**：源 Markdown 已含 `<callout ...>` 时，自动关闭轻美化，避免飞书出现嵌套 callout 风险
-- **飞书预检前置**：创建前先检查 `doctor/auth status`，把环境失败提前暴露为结构化结果
-- **默认色彩克制**：默认不用大面积彩色正文
-- **颜色规则一致**：主题包装、说明、示例、脚本实现都遵循同一套暖色 token
-- **旧参数兼容**：若收到 `--preface-mode` 或 `--navigation-mode`，会忽略并在 JSON 结果中提示
-- **显式删章可控**：只有用户明确要求时，才按标题层级整段排除章节
-- **语义着色可控**：只有用户明确要求时，才按语义规则给关键词上色
-- **正文着色有边界**：默认跳过代码块、表格和已有富文本标签，优先保证渲染稳定
-- **自动推荐可解释**：`auto` 模式会输出最终采用的档位与判断理由
+## 自检与回归
+
+- 修改本 skill 的说明、agent 入口、样例或脚本后，默认先运行：
+  `python3 scripts/lint_skill_consistency.py`
+- 做 dry-run 回归时，运行：
+  `python3 scripts/eval_dry_run_samples.py`
+- 回归至少要覆盖：
+  - 默认创建到 `my_library`
+  - `preflight.ready` 为真
+  - 手写 `<callout ...>` 时自动把 `beautify_mode` 降为 `off`
+  - `--omit-section-title` 会被正确应用
 
 ## 不该做的事
 

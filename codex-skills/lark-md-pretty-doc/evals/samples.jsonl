@@ -1,0 +1,3 @@
+{"id":"plain-prd","input":"evals/fixtures/plain_prd.md","args":["--wiki-space","my_library","--dry-run"],"expect":{"preflight_ready":true,"beautify_mode":"light","omit_section_titles_applied":[],"flowchart_mode":"auto","chunk_count_min":1}}
+{"id":"callout-downgrade","input":"evals/fixtures/hand_authored_callout.md","args":["--wiki-space","my_library","--dry-run"],"expect":{"preflight_ready":true,"beautify_mode":"off","beautify_reason_contains":"callout","chunk_count_min":1}}
+{"id":"omit-section","input":"SKILL.md","args":["--wiki-space","my_library","--dry-run","--omit-section-title","推荐做法"],"expect":{"preflight_ready":true,"beautify_mode":"off","beautify_reason_contains":"callout","omit_section_titles_applied":["推荐做法"],"chunk_count_min":1}}

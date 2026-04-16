@@ -1,4 +1,4 @@
 interface:
   display_name: "MD 飞书排版"
   short_description: "把 Markdown 正文零改写地创建为排版清晰的飞书云文档"
-
+  default_prompt: "使用 $lark-md-pretty-doc。先确认输入是本地 Markdown 文件绝对路径；严格遵守正文零改写、零删减、零重排。默认先做飞书预检与 --dry-run，若用户未指定目标位置则默认创建到 my_library。优先调用 scripts/create_lark_doc_from_md.py，不手写大段 lark-cli docs +create --markdown。若源 Markdown 已含 <callout ...>，接受脚本自动把 beautify_mode 从 light 降级为 off。只有用户明确要求时，才允许按标题整段排除章节、给正文做语义着色、开启结构导图/章节提示或调整标签样式。创建成功后返回 doc_id、doc_url、目标位置和最终采用的排版/着色档位。"

@@ -2,6 +2,20 @@
 
 ## 2026-04-16
 
+### Refresh lark md pretty doc skill
+
+本次更新再次同步了 `lark-md-pretty-doc`，使共享仓库版本与本地技能目录保持一致。
+
+更新内容：
+
+- 更新 `SKILL.md`
+- 更新 `agents/openai.yaml`
+- 新增 `evals/` 目录及样例、说明文件
+- 新增脚本 `scripts/eval_dry_run_samples.py`
+- 新增脚本 `scripts/lint_skill_consistency.py`
+
+## 2026-04-16
+
 ### Refresh bdoc optimization testcase skill
 
 本次更新再次同步了 `bdoc-optimization-testcase-writer`，使共享仓库版本与本地 `~/.codex/skills` 保持一致。
