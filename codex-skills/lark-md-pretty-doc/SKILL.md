@@ -25,6 +25,7 @@ metadata:
 默认目标补充规则：
 
 - 如果用户没有指定 `--folder-token`、`--wiki-node` 或 `--wiki-space`，则默认创建到个人知识库 `my_library`
+- 如果用户没有显式指定 `--title`，且当前文档属于 PRD、方案、测试用例、会议纪要这类业务文档，默认文档标题在文件名 / 主题名前增加创建日期前缀 `YYYYMMDD`，例如：`20260416 退宿申请补充床位清理凭证与清理确认优化需求方案+测试用例`
 - 创建前默认先做一次飞书预检与 `--dry-run`
 - 如果源 Markdown 已经手写了 `<callout ...>`，脚本会自动把最终 `beautify_mode` 从 `light` 降级为 `off`，避免生成嵌套 callout
 - 默认主题是 `editorial-warm`
@@ -33,6 +34,7 @@ metadata:
 ## 快速路径
 
 - 普通创建：`--input <abs.md> --wiki-space my_library`，默认先预检再 `--dry-run`
+- 业务文档创建：若未显式传 `--title`，默认使用 `YYYYMMDD + 文件名/主题名`
 - 显式删章：额外传 `--omit-section-title "章节名"`
 - 显式语义着色：额外传 `--inline-color-mode semantic-conservative`
 - 冒号前标签加粗蓝色：额外传 `--label-prefix-style blue-bold`
@@ -45,7 +47,7 @@ metadata:
 - **例外仅来自用户显式指令**：如果用户明确说“删除某章节”，才允许按标题整段排除该章节。
 - **默认不新增重型 AI 包装层**：不自动加顶部导读 `callout`、导入信息代码块、阅读导航、结构导图、章节提示。
 - **允许新增的内容只有**：
-  - 文档标题（来自文件名或用户显式指定）
+  - 文档标题（来自 `YYYYMMDD + 文件名`、文件名本身或用户显式指定）
   - 克制使用的分割线
   - 少量高亮块
   - 轻量分栏
@@ -205,6 +207,7 @@ python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lar
 ```bash
 python3 /Users/homg/Documents/Codex/skills/lark-md-pretty-doc/scripts/create_lark_doc_from_md.py \
   --input "/absolute/path/to/file.md" \
+  --title "20260416 退宿申请补充床位清理凭证与清理确认优化需求方案+测试用例" \
   --wiki-space my_library \
   --theme editorial-warm
 ```

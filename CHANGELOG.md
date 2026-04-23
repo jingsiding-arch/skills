@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-04-23
+
+### Sync latest local skill updates and add three new skills
+
+本次更新同步了本地多项技能的最新版本，并把 3 个此前未进入共享仓库的新技能一并加入。
+
+更新内容：
+
+- 刷新 4 个已有技能：`bdoc-optimization-testcase-writer`、`lark-md-pretty-doc`、`module-prd-writer`、`prd-to-hifi-prototype`
+- 新增技能目录 `codex-chat`
+- 新增技能目录 `xbxg`
+- 新增运行时技能包目录 `codex-primary-runtime`，其中包含 `slides` 与 `spreadsheets` 两个子技能
+- 当前共享仓库中的自定义技能目录总数更新为 41 个
+- 同步时排除了 `.git`、`node_modules`、`__pycache__`、`.DS_Store`、`output/outputs`、`dist/build` 等本地生成物
+- 清理了同步过程中发现的 `*.bak*` 备份文件，避免将临时稿带入共享仓库
+
 ## 2026-04-16
 
 ### Refresh lark md pretty doc skill

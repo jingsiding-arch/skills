@@ -1,0 +1,1 @@
+{"id":"gantt-dry-run","plan":"evals/fixtures/dev_gantt_plan.json","args":["--base-name","课堂考勤模块_开发排期_20260416","--dry-run"],"expect":{"mode":"dry-run","task_count":4,"module_count":4,"total_effort_days":12.0,"command_count_min":7,"gantt_view_name":"开发甘特图"}}

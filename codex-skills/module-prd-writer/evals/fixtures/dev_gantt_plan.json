@@ -1,0 +1,66 @@
+{
+  "project_name": "课堂考勤模块一期",
+  "start_date": "2026-04-21",
+  "required_end_date": "2026-05-02",
+  "tasks": [
+    {
+      "module": "公共配置",
+      "task_name": "配置页与规则校验",
+      "owner_role": "前后端",
+      "stage": "开发",
+      "priority": "P0",
+      "effort_days": 3.5,
+      "start_date": "2026-04-21",
+      "end_date": "2026-04-24",
+      "parallel_group": "A",
+      "predecessors": "无",
+      "deliverable": "完成配置字段、保存和启用校验",
+      "risk": "依赖组织主数据"
+    },
+    {
+      "module": "考勤执行",
+      "task_name": "执行页与结果回写",
+      "owner_role": "前后端",
+      "stage": "开发",
+      "priority": "P0",
+      "effort_days": 4.0,
+      "start_date": "2026-04-23",
+      "end_date": "2026-04-29",
+      "parallel_group": "A",
+      "predecessors": "配置页与规则校验",
+      "deliverable": "完成发起、提交和结果回写",
+      "risk": "依赖状态流转规则收敛"
+    },
+    {
+      "module": "查询与复核",
+      "task_name": "复核列表与导出",
+      "owner_role": "前后端",
+      "stage": "开发",
+      "priority": "P1",
+      "effort_days": 2.5,
+      "start_date": "2026-04-28",
+      "end_date": "2026-04-30",
+      "parallel_group": "B",
+      "predecessors": "执行页与结果回写",
+      "deliverable": "完成列表查询、筛选、导出和复核入口",
+      "risk": "导出口径需与统计一致"
+    },
+    {
+      "module": "联调验收",
+      "task_name": "联调回归与验收支持",
+      "owner_role": "测试/产品",
+      "stage": "联调",
+      "priority": "P0",
+      "effort_days": 2.0,
+      "start_date": "2026-05-01",
+      "end_date": "2026-05-02",
+      "parallel_group": "C",
+      "predecessors": [
+        "执行页与结果回写",
+        "复核列表与导出"
+      ],
+      "deliverable": "完成主流程、异常流和导出口径回归",
+      "risk": "依赖测试数据准备"
+    }
+  ]
+}

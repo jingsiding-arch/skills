@@ -1,0 +1,3 @@
+{"id":"dry-run-create","input":"assets/module-prd-template.md","args":["--title","模块PRD评测样例","--wiki-space","my_library","--dry-run"],"expect":{"mode":"create","preflight_ready":true,"label_prefix_style":"blue-bold","flowchart_mode":"auto","chunk_count_min":1}}
+{"id":"dry-run-create-minimal","input":"evals/fixtures/minimal_module_prd.md","args":["--title","最小模块PRD评测样例","--wiki-space","my_library","--dry-run"],"expect":{"mode":"create","preflight_ready":true,"label_prefix_style":"blue-bold","flowchart_mode":"auto","chunk_count_min":1}}
+{"id":"dry-run-replace","input":"evals/fixtures/minimal_module_prd.md","args":["--doc","https://example.feishu.cn/docx/mock","--dry-run"],"expect":{"mode":"replace-all","preflight_ready":true,"final_length_min":500}}
