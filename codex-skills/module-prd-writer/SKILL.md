@@ -40,7 +40,7 @@ description: 将一个模糊的业务模块想法整理为模块级 PRD，可用
   - 先执行 `lark-cli doctor`
   - 若使用 `--as user`，再执行 `lark-cli auth status`
   - 任一步失败时，必须先走飞书配置/认证流程，不得假装“已生成飞书文档”
-- 若用户未指定飞书目标位置，默认将新文档创建到个人知识库 `my_library`，不要因为没给 `folder-token` 或 `wiki-node` 就停住。
+- 若用户未指定飞书目标位置，默认将新文档创建到飞书文件夹【Codex文档】，不要因为没给 `folder-token` 或 `wiki-node` 就停住。
 - 调用创建或同步脚本前，默认先执行一次 `--dry-run`，确认：
   - 飞书预检是否通过
   - 最终落点是否正确
@@ -262,7 +262,7 @@ description: 将一个模糊的业务模块想法整理为模块级 PRD，可用
 python3 /Users/homg/.codex/skills/module-prd-writer/scripts/sync_lark_module_prd_doc.py \
   --input "/absolute/path/to/module-prd.md" \
   --title "课堂考勤模块PRD_v1.0_研发交付版_20260413" \
-  --wiki-space my_library \
+  --folder-token VH3rffK9llwobHdAMt1cUSnfnHf \
   --dry-run
 ```
 
@@ -272,7 +272,7 @@ python3 /Users/homg/.codex/skills/module-prd-writer/scripts/sync_lark_module_prd
 python3 /Users/homg/.codex/skills/module-prd-writer/scripts/sync_lark_module_prd_doc.py \
   --input "/absolute/path/to/module-prd.md" \
   --title "课堂考勤模块PRD_v1.0_研发交付版_20260413" \
-  --wiki-space my_library
+  --folder-token VH3rffK9llwobHdAMt1cUSnfnHf
 ```
 
 #### 2. 更新已有飞书 PRD 文档

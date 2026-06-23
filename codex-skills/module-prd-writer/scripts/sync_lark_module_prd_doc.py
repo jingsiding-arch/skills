@@ -205,7 +205,7 @@ def build_create_command(args: argparse.Namespace, source: Path) -> list[str]:
     elif args.wiki_space:
         cmd.extend(["--wiki-space", args.wiki_space])
     else:
-        cmd.extend(["--wiki-space", "my_library"])
+        cmd.extend(["--folder-token", "VH3rffK9llwobHdAMt1cUSnfnHf"])
     if args.dry_run:
         cmd.append("--dry-run")
     return cmd
