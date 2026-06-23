@@ -13,7 +13,7 @@ CHECKS = [
     {
         'id': 'old_testcase_columns',
         'pattern': r'\|\s*用例类型\s*\|\s*用例标题\s*\|\s*前置条件\s*\|\s*操作步骤\s*\|\s*预期结果\s*\|',
-        'message': 'Old testcase table columns found; use 用例类型 | 操作步骤 | 预期结果.',
+        'message': 'Old testcase table columns found; use mind-map style testcase structure instead of the old table.',
         'paths': ('SKILL.md', 'assets', 'references'),
     },
     {
@@ -33,6 +33,24 @@ CHECKS = [
         'pattern': r'至少\s*1\s*个页面级标题且包含.*操作流程.*权限控制',
         'message': 'Minimum deliverable still forces 操作流程/权限控制.',
         'paths': ('SKILL.md', 'references'),
+    },
+    {
+        'id': 'removed_solution_overview',
+        'pattern': r'^#{1,6}\s+.*实现方案概览|`实现方案概览`',
+        'message': '实现方案概览 has been removed; fold summary content into 需求背景 or 页面改动点总览.',
+        'paths': ('SKILL.md', 'assets', 'references', 'agents'),
+    },
+    {
+        'id': 'old_testcase_numbering',
+        'pattern': r'4\.[12]\s+(建议优先回归场景|具体测试用例)',
+        'message': 'Old testcase numbering found; use 3.1 具体测试用例（思维导图） after removing 实现方案概览.',
+        'paths': ('SKILL.md', 'assets', 'references'),
+    },
+    {
+        'id': 'split_page_logic_headings',
+        'pattern': r'^#{1,6}\s+\d+(?:\.\d+)*\s+(页面 / 交互|逻辑 / 规则)$',
+        'message': 'Do not split page content into 页面 / 交互 and 逻辑 / 规则 headings; use 改动点 headings with 页面表现/规则口径 inside.',
+        'paths': ('assets', 'references'),
     },
     {
         'id': 'misleading_whiteboard_claim',

@@ -10,7 +10,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SAMPLES_PATH = ROOT / 'evals' / 'samples.jsonl'
 OLD_TESTCASE_HEADER = re.compile(r'\|\s*用例类型\s*\|\s*用例标题\s*\|\s*前置条件\s*\|\s*操作步骤\s*\|\s*预期结果\s*\|')
-NEW_TESTCASE_HEADER = re.compile(r'\|\s*用例类型\s*\|\s*操作步骤\s*\|\s*预期结果\s*\|')
+NEW_TESTCASE_MARKER = re.compile(r'3\.1\s+具体测试用例（思维导图）|具体测试用例（思维导图）')
+TESTCASE_WHITEBOARD_MARKER = re.compile(r'<whiteboard\b|```mermaid\s+mindmap|测试用例思维导图待落白板')
 
 
 def parse_args() -> argparse.Namespace:
@@ -69,10 +70,14 @@ def evaluate_sample(sample: dict, output_text: str, output_file: str) -> dict:
             failures.append(f'Missing required marker: {item}')
 
     if '测试用例' in output_text:
-        if NEW_TESTCASE_HEADER.search(output_text):
-            passes.append('Uses the new testcase table header.')
+        if NEW_TESTCASE_MARKER.search(output_text):
+            passes.append('Uses the new mind-map style testcase marker.')
         else:
-            failures.append('Output contains `测试用例` but is missing the new testcase table header `用例类型 | 操作步骤 | 预期结果`.')
+            failures.append('Output contains `测试用例` but is missing the mind-map style testcase marker `具体测试用例（思维导图）`.')
+        if TESTCASE_WHITEBOARD_MARKER.search(output_text):
+            passes.append('Testcase section includes a visible mind-map artifact marker.')
+        else:
+            failures.append('Output contains `测试用例` but has no whiteboard, Mermaid mindmap, or testcase mind-map fallback marker.')
 
     if OLD_TESTCASE_HEADER.search(output_text):
         failures.append('Output still uses the old testcase table header with `用例标题` / `前置条件`.')
