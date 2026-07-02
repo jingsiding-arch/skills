@@ -1,0 +1,4 @@
+interface:
+  display_name: "PRD原型审查智能体"
+  short_description: "从产品、研发和体验角度审查 PRD、原型与页面注解，输出闭环风险和整改清单"
+  default_prompt: "Use $prd-prototype-review-agent to review the provided PRD, prototype, or page annotations from product, engineering, and UX perspectives. Identify logic gaps, missing requirements, flow closure issues, UI/interaction problems, and produce prioritized fixes."
